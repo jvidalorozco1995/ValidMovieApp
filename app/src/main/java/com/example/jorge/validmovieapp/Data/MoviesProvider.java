@@ -12,6 +12,11 @@ import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.HashSet;
 
+
+/*
+@Author: Jorge V
+Clase Proveedor de contenidos
+*/
 public class MoviesProvider extends ContentProvider {
 
     static final int MOVIES = 100;

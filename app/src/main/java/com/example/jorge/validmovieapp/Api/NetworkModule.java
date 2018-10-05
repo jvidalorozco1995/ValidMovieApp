@@ -21,6 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import dagger.Module;
 import dagger.Provides;
 
+
+/*
+@Author: Jorge V
+Clase modulo de red, con retrofit
+*/
 @Module
 public class NetworkModule {
 
@@ -72,12 +77,20 @@ public class NetworkModule {
         return retrofit.create(IMovieService.class);
     }
 
+    /*
+    @Author: Jorge V
+    Proveer servicio de peliculas
+    */
     @Provides
     @Singleton
     public MoviesService providesMoviesService(Application application, IMovieService movieServiceRepository) {
         return new MoviesService(application.getApplicationContext(), movieServiceRepository);
     }
 
+    /*
+    @Author: Jorge V
+    Listado de favoritos servicio
+    */
     @Provides
     @Singleton
     public FavoritesService providesFavoritesService(Application application) {

@@ -8,6 +8,10 @@ import com.example.jorge.validmovieapp.Models.Movie;
 
 import javax.inject.Inject;
 
+/*
+@Author: Jorge V
+Clase Modelo favoritos, para guardar en db.
+*/
 public class FavoritesService {
 
     private final Context context;

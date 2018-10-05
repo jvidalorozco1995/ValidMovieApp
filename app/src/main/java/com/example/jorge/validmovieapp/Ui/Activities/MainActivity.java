@@ -69,14 +69,14 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         setupToolbar();
         setupNavigationDrawer();
         setupNavigationView();
-      //  setupFab();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        //updateTitle();
+
     }
 
     @Override

@@ -8,6 +8,10 @@ import android.os.Parcelable;
 import com.example.jorge.validmovieapp.Data.MoviesContract;
 import com.google.gson.annotations.SerializedName;
 
+/*
+@Author: Jorge V
+Clase Modelo peliculas
+*/
 public class Movie implements Parcelable {
 
 

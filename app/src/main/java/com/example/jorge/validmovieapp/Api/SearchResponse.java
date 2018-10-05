@@ -4,6 +4,13 @@ package com.example.jorge.validmovieapp.Api;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+
+/*
+@Author: Jorge V
+Clase Modelo peliculas
+*/
+
 public class SearchResponse <T>{
 
     @SerializedName("page")
