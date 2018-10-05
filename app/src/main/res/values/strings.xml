@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ValidMovieApp</string>
+    <string name="navigation_item_search">Buscar</string>
+    <string name="navigation_item_favorites">Favoritos</string>
+    <string name="movies_grid_no_movies">No se encontraron resultados</string>
+    <string name="not_icon">No tiene icono</string>
+
+
+    <!-- Actions (menu items, buttons, etc.) and common strings -->
+    <string name="action_search">Buscar peliculas</string>
+
+
+    <!-- Error messages -->
+    <string name="error_failed_to_update_movies">No se ha podido actualizar el listado de peliculas</string>
+</resources>
