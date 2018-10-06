@@ -17,6 +17,8 @@ import android.view.View;
 import com.example.jorge.validmovieapp.Data.FavoritesService;
 import com.example.jorge.validmovieapp.Models.Movie;
 import com.example.jorge.validmovieapp.R;
+import com.example.jorge.validmovieapp.Ui.Detail.MovieDetailActivity;
+import com.example.jorge.validmovieapp.Ui.Fragments.grid.FavoritesGridFragment;
 import com.example.jorge.validmovieapp.Ui.Fragments.grid.MoviesGridFragment;
 import com.example.jorge.validmovieapp.Util.OnItemSelectedListener;
 import com.example.jorge.validmovieapp.ValidMoviesApp;
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     @Override
     public void onItemSelected(Movie movie) {
 
-            //MovieDetailActivity.start(this, movie);
+            MovieDetailActivity.start(this, movie);
 
     }
 
@@ -159,7 +161,13 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
                 return true;
             case R.id.drawer_item_favorites:
-
+                if (selectedNavigationItem != 1) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.movies_grid_container, FavoritesGridFragment.create())
+                            .commit();
+                    selectedNavigationItem = 1;
+                    hideMovieDetailContainer();
+                }
                 drawerLayout.closeDrawers();
 
                 return true;

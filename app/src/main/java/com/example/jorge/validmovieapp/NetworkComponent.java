@@ -2,6 +2,8 @@ package com.example.jorge.validmovieapp;
 
 import com.example.jorge.validmovieapp.Api.NetworkModule;
 import com.example.jorge.validmovieapp.Ui.Activities.MainActivity;
+import com.example.jorge.validmovieapp.Ui.Detail.MovieDetailActivity;
+import com.example.jorge.validmovieapp.Ui.Detail.MovieDetailFragment;
 import com.example.jorge.validmovieapp.Ui.Fragments.grid.MoviesGridFragment;
 
 import javax.inject.Singleton;
@@ -16,5 +18,8 @@ public interface NetworkComponent {
 
     void inject(MainActivity mainActivity);
 
+    void inject(MovieDetailActivity movieDetailActivity);
+
+    void inject(MovieDetailFragment movieDetailFragment);
 
 }

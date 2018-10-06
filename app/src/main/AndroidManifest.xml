@@ -20,6 +20,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".Ui.Detail.MovieDetailActivity"
+            android:parentActivityName=".Ui.Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Ui.Activities.MainActivity"/>
+        </activity>
 
         <provider
             android:name=".Data.MoviesProvider"

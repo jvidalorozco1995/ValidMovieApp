@@ -18,6 +18,11 @@ public class MoviesDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_SCHEMA_VERSION);
     }
 
+
+    /*
+          @Author : Jorge V
+          Crear las tablas
+         */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(MoviesContract.MovieEntry.SQL_CREATE_TABLE);

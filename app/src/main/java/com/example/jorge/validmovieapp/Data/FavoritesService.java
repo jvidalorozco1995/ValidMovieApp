@@ -21,6 +21,10 @@ public class FavoritesService {
         this.context = context.getApplicationContext();
     }
 
+    /*
+      @Author : Jorge V
+      Metodo para guardar una pelicula como favorita en DB
+     */
     public void addToFavorites(Movie movie) {
         context.getContentResolver().insert(MoviesContract.MovieEntry.CONTENT_URI, movie.toContentValues());
         ContentValues contentValues = new ContentValues();
@@ -28,6 +32,10 @@ public class FavoritesService {
         context.getContentResolver().insert(MoviesContract.Favorites.CONTENT_URI, contentValues);
     }
 
+    /*
+          @Author : Jorge V
+          Metodo para remover la pelicula que fue guardada como favorita
+         */
     public void removeFromFavorites(Movie movie) {
         context.getContentResolver().delete(
                 MoviesContract.Favorites.CONTENT_URI,
@@ -36,6 +44,10 @@ public class FavoritesService {
         );
     }
 
+    /*
+          @Author : Jorge V
+          Metodo para validar si la pelicula es favorita
+         */
     public boolean isFavorite(Movie movie) {
         boolean favorite = false;
         Cursor cursor = context.getContentResolver().query(

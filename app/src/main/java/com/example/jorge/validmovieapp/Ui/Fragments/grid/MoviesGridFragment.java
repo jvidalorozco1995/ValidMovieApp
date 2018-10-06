@@ -28,6 +28,7 @@ import com.example.jorge.validmovieapp.R;
 import com.example.jorge.validmovieapp.ValidMoviesApp;
 import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -36,6 +37,7 @@ import javax.inject.Inject;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class MoviesGridFragment extends AbstractMoviesGridFragment {
@@ -187,7 +189,7 @@ public class MoviesGridFragment extends AbstractMoviesGridFragment {
                 .doOnNext(query -> Log.d("search", query))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.newThread())
-                .switchMap(query -> movieServiceRepository.searchMovies(query, null))
+                .switchMap(query -> movieServiceRepository.searchMovies(query, 1))
                 .map(SearchResponse::getResults)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Movie>>() {
@@ -203,12 +205,39 @@ public class MoviesGridFragment extends AbstractMoviesGridFragment {
 
                     @Override
                     public void onNext(List<Movie> movies) {
-                        MoviesSearchAdapter adapter = new MoviesSearchAdapter(getContext(), movies);
-                        adapter.setOnItemClickListener((itemView, position) ->
-                                getOnItemSelectedListener().onItemSelected(adapter.getItem(position))
-                        );
-                        recyclerView.setAdapter(adapter);
-                        updateGridLayout();
+
+                        List<Movie> newMovie= new ArrayList<>();
+                        for (Movie item: movies) {
+                            movieServiceRepository.getDetailMovies(item.getId())
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Subscriber<Movie>() {
+                                @Override
+                                public void onCompleted() {
+                                    MoviesSearchAdapter adapter = new MoviesSearchAdapter(getContext(), newMovie);
+                                    adapter.setOnItemClickListener((itemView, position) ->
+                                            getOnItemSelectedListener().onItemSelected(adapter.getItem(position))
+                                    );
+                                    recyclerView.setAdapter(adapter);
+                                    updateGridLayout();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+
+                                @Override
+                                public void onNext(Movie movie) {
+                                    movie.setId(movie.getId());
+                                    movie.setName(item.getName());
+                                    newMovie.add(movie);
+                                }
+
+                            });
+                        }
+
+
                     }
                 });
 

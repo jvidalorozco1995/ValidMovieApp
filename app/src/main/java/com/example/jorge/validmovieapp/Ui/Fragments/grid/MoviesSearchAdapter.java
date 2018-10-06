@@ -20,8 +20,8 @@ import java.util.List;
 
 public class MoviesSearchAdapter extends ArrayRecyclerViewAdapter<Movie, MovieGridItemViewHolder> {
 
-    private static final String POSTER_IMAGE_BASE_URL = "https://www.gyanwalebaba.com/wp-content/uploads/2018/01/stedwardedge.com_.jpj_.jpg";
-
+    private static final String POSTER_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
+    private static final String POSTER_IMAGE_SIZE = "w780";
 
     private Context context;
     private OnItemClickListener onItemClickListener;
@@ -45,7 +45,7 @@ public class MoviesSearchAdapter extends ArrayRecyclerViewAdapter<Movie, MovieGr
         holder.tvTitle.setText(""+movie.getName());
 
         Glide.with(context)
-                .load(POSTER_IMAGE_BASE_URL)
+                .load(POSTER_IMAGE_BASE_URL + POSTER_IMAGE_SIZE + movie.getPoster_path())
                 .placeholder(new ColorDrawable(context.getResources().getColor(R.color.accent_material_light)))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
